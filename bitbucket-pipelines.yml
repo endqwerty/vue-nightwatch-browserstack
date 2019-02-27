@@ -1,0 +1,17 @@
+# You can use a Docker image from Docker Hub or your own container
+# registry for your build environment.
+image: node:5.10-slim
+pipelines:
+  branches:
+    master:
+      - step:
+          script:
+            # Generates a .npmrc file configured for installing private modules:
+            #
+            # NPM_REGISTRY_URL: the full URL of your private registry
+            #                   defaults to registry.npmjs.org.
+            # NPM_TOKEN: secret token for installing private modules. This
+            #            this token can be found in your .npmrc, after logging in.
+            - printf "//`node -p \"require('url').parse(process.env.NPM_REGISTRY_URL || 'https://registry.npmjs.org').host\"`/:_authToken=${NPM_TOKEN}\nregistry=${NPM_REGISTRY_URL:-https://registry.npmjs.org}\n" >> ~/.npmrc
+            # installs public and private moduless.
+            - npm publish

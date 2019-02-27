@@ -1,0 +1,53 @@
+{
+  "_from": "vue-cli-plugin-nightwatch-browserstack",
+  "_id": "vue-cli-plugin-nightwatch-browserstack@1.0.3",
+  "_inBundle": false,
+  "_integrity": "sha512-+BJVpP4bkEr1a4dBlUHcWLRFNdAGUrF/e2y/uKPXZZRQI7kw66kEemcW2q0unUkpp3tAw3BxAx4WodIfBpvDfw==",
+  "_location": "/vue-cli-plugin-nightwatch-browserstack",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "vue-cli-plugin-nightwatch-browserstack",
+    "name": "vue-cli-plugin-nightwatch-browserstack",
+    "escapedName": "vue-cli-plugin-nightwatch-browserstack",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/vue-cli-plugin-nightwatch-browserstack/-/vue-cli-plugin-nightwatch-browserstack-1.0.3.tgz",
+  "_shasum": "a1aec2b3825bd6105f28c530c60f14ddf97c6db3",
+  "_spec": "vue-cli-plugin-nightwatch-browserstack",
+  "_where": "/Users/danielyang/Projects/control-tower",
+  "author": {
+    "name": "Nick Ewer",
+    "email": "newer@zomaron.com"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Vue-cli 3 plugin for adding nightwatch + browserstack e2e tests",
+  "devDependencies": {
+    "browserstack-local": "^1.3.7",
+    "nightwatch": "^1.0.18"
+  },
+  "homepage": "https://bitbucket.org/zomaron/vue-cli-plugin-nightwatch-browserstack#readme",
+  "keywords": [
+    "vue",
+    "vue-cli"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "vue-cli-plugin-nightwatch-browserstack",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/zomaron/vue-cli-plugin-nightwatch-browserstack.git"
+  },
+  "version": "1.0.3"
+}
