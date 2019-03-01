@@ -4,7 +4,7 @@ module.exports = (api, opts, rootOptions) => {
   api.extendPackage({
     devDependencies: {
       "browserstack-automate": "^1.0.2",
-      "nightwatch": "^1.0.18"
+      "nightwatch": "^0.9.21",
     },
     scripts: {
       'test:browserstack:chrome': 'vue-cli-service test:browserstack -c browserstack_config/nightwatch.conf.js -e chrome',
