@@ -3,7 +3,6 @@
     "name": "Daniel Yang",
     "email": "daniel.yang@apijet.com"
   },
-  "bundleDependencies": false,
   "deprecated": false,
   "description": "Vue-cli 3 plugin for adding nightwatch + browserstack e2e tests",
   "devDependencies": {
