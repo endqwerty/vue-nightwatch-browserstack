@@ -1,12 +1,10 @@
-require('browserstack-local');
-
 nightwatch_config = {
-  src_folders : [ "tests/browserstack" ],
+  src_folders: ["tests/browserstack"],
 
-  selenium : {
-    "start_process" : false,
-    "host" : "hub-cloud.browserstack.com",
-    "port" : 80
+  selenium: {
+    "start_process": false,
+    "host": "hub-cloud.browserstack.com",
+    "port": 80
   },
 
   common_capabilities: {
@@ -16,9 +14,9 @@ nightwatch_config = {
     'browserstack.debug': true,
     'browserstack.local': true
   },
-  
+
   test_workers: false,
-  
+
   test_settings: {
     default: {},
     chrome: {
@@ -61,12 +59,12 @@ nightwatch_config = {
 };
 
 // Code to support common capabilites
-for(var i in nightwatch_config.test_settings){
+for (var i in nightwatch_config.test_settings) {
   var config = nightwatch_config.test_settings[i];
   config['selenium_host'] = nightwatch_config.selenium.host;
   config['selenium_port'] = nightwatch_config.selenium.port;
   config['desiredCapabilities'] = config['desiredCapabilities'] || {};
-  for(var j in nightwatch_config.common_capabilities){
+  for (var j in nightwatch_config.common_capabilities) {
     config['desiredCapabilities'][j] = config['desiredCapabilities'][j] || nightwatch_config.common_capabilities[j];
   }
 }

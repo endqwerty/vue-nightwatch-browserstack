@@ -23,6 +23,7 @@ module.exports = (api) => {
           nightwatch.bs_local = bs_local = new browserstack.Local();
           bs_local.start({
               'key': process.env.BROWSERSTACK_ACCESS_KEY,
+              'force': true
             },
             (error) => {
               if (error) {
