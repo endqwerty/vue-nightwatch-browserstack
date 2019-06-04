@@ -1,18 +1,20 @@
 nightwatch_config = {
-  src_folders: ["tests/browserstack"],
+  src_folders: ['tests/browserstack'],
 
   selenium: {
-    "start_process": false,
-    "host": "hub-cloud.browserstack.com",
-    "port": 80
+    start_process: false,
+    host: 'hub-cloud.browserstack.com',
+    port: 80,
   },
 
   common_capabilities: {
-    'build': 'nightwatch-browserstack',
-    'browserstack.user': process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
-    'browserstack.key': process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
+    build: 'nightwatch-browserstack',
+    'browserstack.user':
+      process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
+    'browserstack.key':
+      process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
     'browserstack.debug': true,
-    'browserstack.local': true
+    'browserstack.local': true,
   },
 
   test_workers: false,
@@ -21,52 +23,54 @@ nightwatch_config = {
     default: {},
     chrome: {
       desiredCapabilities: {
-        browser: "chrome",
-        platform: 'WINDOWS'
-      }
+        browser: 'chrome',
+        platform: 'WINDOWS',
+      },
     },
     firefox: {
       desiredCapabilities: {
-        browser: "firefox",
-        platform: 'WINDOWS'
-      }
+        browser: 'firefox',
+        platform: 'WINDOWS',
+      },
     },
     safari: {
       desiredCapabilities: {
-        browser: "safari",
-        platform: 'MAC'
-      }
+        browser: 'safari',
+        platform: 'MAC',
+      },
     },
     ie: {
       desiredCapabilities: {
-        browser: "internet explorer",
+        browser: 'internet explorer',
         version: '10',
-        platform: 'WINDOWS'
-      }
+        platform: 'WINDOWS',
+      },
     },
     iphone: {
       desiredCapabilities: {
-        browser: "iPhone"
-      }
+        browser: 'iPhone',
+      },
     },
     android: {
       desiredCapabilities: {
-        browser: "android",
-        platform: 'ANDROID'
-      }
-    }
-  }
-};
+        browser: 'android',
+        platform: 'ANDROID',
+      },
+    },
+  },
+}
 
 // Code to support common capabilites
 for (var i in nightwatch_config.test_settings) {
-  var config = nightwatch_config.test_settings[i];
-  config['selenium_host'] = nightwatch_config.selenium.host;
-  config['selenium_port'] = nightwatch_config.selenium.port;
-  config['desiredCapabilities'] = config['desiredCapabilities'] || {};
+  var config = nightwatch_config.test_settings[i]
+  config['selenium_host'] = nightwatch_config.selenium.host
+  config['selenium_port'] = nightwatch_config.selenium.port
+  config['desiredCapabilities'] = config['desiredCapabilities'] || {}
   for (var j in nightwatch_config.common_capabilities) {
-    config['desiredCapabilities'][j] = config['desiredCapabilities'][j] || nightwatch_config.common_capabilities[j];
+    config['desiredCapabilities'][j] =
+      config['desiredCapabilities'][j] ||
+      nightwatch_config.common_capabilities[j]
   }
 }
 
-module.exports = nightwatch_config;
+module.exports = nightwatch_config
