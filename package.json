@@ -14,7 +14,7 @@
   },
   "engineStrict": true,
   "peerDependencies": {
-    "nightwatch": "^1.0.0"
+    "nightwatch": "^0.9.21"
   },
   "homepage": "https://github.com/daposy/vue-nightwatch-browserstack",
   "keywords": [
