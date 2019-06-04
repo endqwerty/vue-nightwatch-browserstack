@@ -22,6 +22,7 @@
     "vue-cli"
   ],
   "pre-commit": [
+    "precommit-msg",
     "lint"
   ],
   "license": "MIT",
@@ -40,6 +41,7 @@
     "prettier": "^1.17.1"
   },
   "scripts": {
-    "lint": "eslint **/*.js --fix"
+    "lint": "eslint ./ --cache --fix",
+    "precommit-msg": "echo 'Pre-commit checks...' && exit 0"
   }
 }
