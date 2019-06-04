@@ -10,7 +10,7 @@
     "browserstack-local": "^1.4.0"
   },
   "engines": {
-    "node": ">=6.4.0"
+    "node": ">=6.10.0"
   },
   "engineStrict": true,
   "peerDependencies": {
@@ -20,6 +20,9 @@
   "keywords": [
     "vue",
     "vue-cli"
+  ],
+  "pre-commit": [
+    "lint"
   ],
   "license": "MIT",
   "main": "index.js",
@@ -36,6 +39,6 @@
     "prettier": "^1.17.1"
   },
   "scripts": {
-    "lint": "eslint generator/**/*.js --fix"
+    "lint": "eslint **/*.js --fix"
   }
 }
