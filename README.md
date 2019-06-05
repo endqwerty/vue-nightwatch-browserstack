@@ -5,6 +5,9 @@
 ## Installation
 
 In your existing Vue cli application, run the following command:
+`vue add e2e-nightwatch-browserstack`
+
+or as a fallback, if the above does not work, try
 `npm install -save-dev vue-cli-plugin-e2e-nightwatch-browserstack`
 
 This will install a `/browserstack_config` folder
@@ -23,6 +26,9 @@ has already been installed.
 
 If you installed this one first,
 delete all traces of it and install the nightwatch plugin first.
+
+If the files are not created (or you installed through npm install),
+try `vue invoke e2e-nightwatch-browserstack`
 
 ## Usage
 
