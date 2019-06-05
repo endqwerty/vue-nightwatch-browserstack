@@ -1,5 +1,6 @@
-nightwatch_config = {
-  src_folders: ['tests/browserstack'],
+let nightwatch_config = {
+  src_folders: ['tests/e2e/specs'],
+  custom_assertions_path: ['tests/e2e/custom-assertions'],
 
   selenium: {
     start_process: false,
@@ -20,7 +21,11 @@ nightwatch_config = {
   test_workers: false,
 
   test_settings: {
-    default: {},
+    default: {
+      globals: {
+        waitForConditionTimeout: 5000,
+      },
+    },
     chrome: {
       desiredCapabilities: {
         browser: 'chrome',
