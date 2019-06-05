@@ -5,19 +5,47 @@
 ## Installation
 
 In your existing Vue cli application, run the following command:
-`npm install -D vue-cli-plugin-e2e-nightwatch-browserstack`
+`npm install -save-dev vue-cli-plugin-e2e-nightwatch-browserstack`
 
-This will install a `/browserstack_config` folder with a `nightwatch.conf.js` file, a default test at `/tests/browserstack/default_test.test.js`, and adds several scripts to the `package.json` to run the tests in different browsers.
+This will install a `/browserstack_config` folder
+with a `nightwatch.conf.js` file,
+a default test at `/tests/browserstack/default_test.test.js`,
+and adds several scripts to the `package.json`
+to run the tests in different browsers.
 
-This differs from npm:vue-cli-plugin-e2e-nightwatch-browserstack by integrating better with the e2e-nightwatch plugin.
+This differs from `npm:vue-cli-plugin-e2e-nightwatch-browserstack`
+by integrating better with the e2e-nightwatch plugin.
 
-**Note:** this depends on @vue/cli-plugin-e2e-nightwatch
-However, it does not currently support using the same nightwatch package located inside of @vue/cli-plugin-e2e-nightwatch
+**Note:** this depends on `@vue/cli-plugin-e2e-nightwatch`
 
-Future updates will:
+This package assumes that `@vue/cli-plugin-e2e-nightwatch`
+has already been installed.
 
-* remove the duplication of nightwatch in the dependency tree
-* remove the default test folders on install
-* merge the nightwatch conf.js with the e2e-nightwatch plugin
+If you installed this one first,
+delete all traces of it and install the nightwatch plugin first.
 
-This package assumes that @vue/cli-plugin-e2e-nightwatch has already been installed. If you installed this one first, delete all traces of it and install the nightwatch plugin first.
+## Usage
+
+`npm run test:browserstack:chrome`
+or replace chrome with `firefox`, `safari`, `ie`, `android`, `ios`
+
+### Testing without starting the dev server
+
+`--url` flag is used to specify a url. This flag skips the dev server
+and passes the url to browserstack as part of the config.
+Further nightwatch commands could change the starting URL,
+but this is the one which will show up in the Browserstack UI.
+
+## Known Issues
+
+### TypeError: browser.assert.elementCount is not a function
+
+`asset.elementCount()` is a sample custom-assertion.
+Make sure you set the custom assertions path in `nightwatch.conf.js`
+
+### Nightwatch not being used as the test runner
+
+`"@vue/cli-plugin-e2e-nightwatch": "^3.8.0",` is the latest version.
+It uses a version of nightwatch
+before the nightwatch CLI was implemented in `1.0.0`.
+This hasn't been an issue in my testing, but could be an issue for others
