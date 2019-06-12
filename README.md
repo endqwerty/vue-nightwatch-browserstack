@@ -2,6 +2,9 @@
 
 @vue/cli plugin for automated testing with Vue + Nightwatch + BrowserStack
 
+<img src="https://github.com/daposy/vue-nightwatch-browserstack/logos/Vue-logo.svg" height="70px">
+<img src="https://github.com/daposy/vue-nightwatch-browserstack/logos/Browserstack-logo.svg" height="70px">
+
 ## Installation
 
 In your existing Vue cli application, run the following command:
@@ -31,6 +34,14 @@ If the files are not created (or you installed through npm install),
 try `vue invoke e2e-nightwatch-browserstack`
 
 ## Usage
+
+### Configuration
+
+`BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY` are required to be set.
+These can be retrieved from your account settings at:
+<https://www.browserstack.com/accounts/settings>
+
+### Run
 
 `npm run test:browserstack:chrome`
 or replace chrome with `firefox`, `safari`, `ie`, `android`, `ios`
