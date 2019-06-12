@@ -5,6 +5,7 @@ jobs:
       - image: circleci/node:8.16.0
     steps:
       - checkout
+      - setup_remote_docker
       - run: npm install
       - run: docker build -t vue-nightwatch-browserstack .
       - run: docker run -e BROWSERSTACK_USERNAME=$BROWSERSTACK_USERNAME -e BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY vue-nightwatch-browserstack
