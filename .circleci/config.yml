@@ -26,6 +26,17 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths: .
+  bump:
+    docker:
+      - image: circleci/node:8.10
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: bump package version
+          command: |
+            npm version prerelease --preid=alpha -m "Bumped version number to %s [ci skip]"
+            git push origin master
+            git push --tags
   deploy:
     docker:
       - image: circleci/node:8.10
@@ -47,6 +58,7 @@ workflows:
       - deploy:
           requires:
             - test
+            - bump
           filters:
             tags:
               only: /^v.*/
