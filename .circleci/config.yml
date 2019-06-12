@@ -57,8 +57,11 @@ workflows:
       - test
       - bump:
         filters:
-          branches:
-            ignore: /.*/
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
       - deploy:
           requires:
             - test
