@@ -56,7 +56,6 @@ workflows:
     jobs:
       - test
       - bump:
-        filters:
           filters:
             tags:
               only: /^v.*/
