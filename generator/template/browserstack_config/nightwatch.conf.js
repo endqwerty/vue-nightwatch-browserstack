@@ -23,6 +23,7 @@ let nightwatch_config = {
   test_settings: {
     default: {
       globals: {
+        project: process.env.BROWSERSTACK_PROJECT || 'default_project',
         waitForConditionTimeout: 5000,
       },
     },

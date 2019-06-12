@@ -41,6 +41,9 @@ try `vue invoke e2e-nightwatch-browserstack`
 These can be retrieved from your account settings at:
 <https://www.browserstack.com/accounts/settings>
 
+`BROWSERSTACK_PROJECT` should be configured to split tests by project.
+The default name is "default_project"
+
 ### Run
 
 `npm run test:browserstack:chrome`
