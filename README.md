@@ -73,7 +73,7 @@ This hasn't been an issue in my testing, but could be an issue for others
 
 <https://cli.vuejs.org/dev-guide/plugin-dev.html#installing-plugin-locally>
 
-## Supported by
+## Utilizes
 
 <img src="https://github.com/daposy/vue-nightwatch-browserstack/blob/master/logos/Vue-logo.svg" height="70px">
 <img src="https://github.com/daposy/vue-nightwatch-browserstack/blob/master/logos/Browserstack-logo.svg" height="70px">
