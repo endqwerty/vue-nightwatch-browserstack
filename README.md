@@ -69,3 +69,7 @@ Make sure you set the custom assertions path in `nightwatch.conf.js`
 It uses a version of nightwatch
 before the nightwatch CLI was implemented in `1.0.0`.
 This hasn't been an issue in my testing, but could be an issue for others
+
+## Development
+
+<https://cli.vuejs.org/dev-guide/plugin-dev.html#installing-plugin-locally>
