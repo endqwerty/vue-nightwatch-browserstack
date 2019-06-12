@@ -12,7 +12,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - setup_remote_docker
-      - run: npm install
+      - run: npm ci
       - run: |
           TAG=1.1.$CIRCLE_BUILD_NUM
           docker build -t $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG .
@@ -26,42 +26,6 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths: .
-  bump-patch:
-    docker:
-      - image: circleci/node:8.10
-    working_directory: ~/repo
-    steps:
-      - run:
-          name: bump package version
-          command: |
-            git config user.name $CIRCLE_USERNAME
-            npm version patch -m "Upgrade to %s through CI"
-            git push origin master
-            git push --tags
-  bump-minor:
-    docker:
-      - image: circleci/node:8.10
-    working_directory: ~/repo
-    steps:
-      - run:
-          name: bump package version
-          command: |
-            git config user.name $CIRCLE_USERNAME
-            npm version major -m "Upgrade to %s through CI"
-            git push origin master
-            git push --tags
-  bump-major:
-    docker:
-      - image: circleci/node:8.10
-    working_directory: ~/repo
-    steps:
-      - run:
-          name: bump package version
-          command: |
-            git config user.name $CIRCLE_USERNAME
-            npm version major -m "Upgrade to %s through CI"
-            git push origin master
-            git push --tags
   deploy:
     docker:
       - image: circleci/node:8.10
@@ -80,30 +44,6 @@ workflows:
   build_and_test:
     jobs:
       - test
-      - bump-major:
-          requires:
-            - test
-          filters:
-            tags:
-              only: /^major/
-            branches:
-              ignore: /.*/
-      - bump-minor:
-          requires:
-            - test
-          filters:
-            tags:
-              only: /^minor/
-            branches:
-              ignore: /.*/
-      - bump-patch:
-          requires:
-            - test
-          filters:
-            tags:
-              only: /^patch/
-            branches:
-              ignore: /.*/
       - deploy:
           requires:
             - test
