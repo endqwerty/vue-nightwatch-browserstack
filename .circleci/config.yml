@@ -34,6 +34,7 @@ jobs:
       - run:
           name: bump package version
           command: |
+            git config user.name $CIRCLE_USERNAME
             npm version patch -m "Upgrade to %s through CI"
             git push origin master
             git push --tags
@@ -45,6 +46,7 @@ jobs:
       - run:
           name: bump package version
           command: |
+            git config user.name $CIRCLE_USERNAME
             npm version major -m "Upgrade to %s through CI"
             git push origin master
             git push --tags
@@ -56,6 +58,7 @@ jobs:
       - run:
           name: bump package version
           command: |
+            git config user.name $CIRCLE_USERNAME
             npm version major -m "Upgrade to %s through CI"
             git push origin master
             git push --tags
@@ -108,4 +111,4 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: /.*/
+              only: /^master/
