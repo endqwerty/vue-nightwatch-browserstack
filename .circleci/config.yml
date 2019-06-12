@@ -1,10 +1,15 @@
 version: 2
 jobs:
-  build:
+  test:
     docker:
       - image: circleci/node:8.16.0
     steps:
       - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}.
+          # fallback to using the latest cache if no exact match is found
+	        - v1-dependencies-
       - setup_remote_docker
       - run: npm install
       - run: |
@@ -13,8 +18,35 @@ jobs:
           docker run -e BROWSERSTACK_USERNAME=$BROWSERSTACK_USERNAME -e BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY -e BROWSERSTACK_PROJECT=$BROWSERSTACK_PROJECT $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker push $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
+      - run:
+          name: Publish package
+          command: npm publish
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+
