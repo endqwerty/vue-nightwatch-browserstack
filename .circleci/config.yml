@@ -7,8 +7,12 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: npm install
-      - run: docker build -t vue-nightwatch-browserstack .
-      - run: docker run -e BROWSERSTACK_USERNAME=$BROWSERSTACK_USERNAME -e BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY vue-nightwatch-browserstack
+      - run: |
+        TAG=0.1.$CIRCLE_BUILD_NUM
+        docker build -t vue-nightwatch-browserstack:1.1.$TAG .
+        docker run -e BROWSERSTACK_USERNAME=$BROWSERSTACK_USERNAME -e BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY vue-nightwatch-browserstack
+        docker login -u $DOCKER_USER -p $DOCKER_PASS
+        docker push $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG
 workflows:
   version: 2
   build_and_test:
