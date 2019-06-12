@@ -2,8 +2,7 @@
 
 @vue/cli plugin for automated testing with Vue + Nightwatch + BrowserStack
 
-<img src="https://github.com/daposy/vue-nightwatch-browserstack/blob/master/logos/Vue-logo.svg" height="70px">
-<img src="https://github.com/daposy/vue-nightwatch-browserstack/blob/master/logos/Browserstack-logo.svg" height="70px">
+[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=ZDBYTHVrYmxWYmFjQW1UQS9SczZPV1lta1ZqWTJ6aDZPU3JIZ0hTQ3RDZz0tLVRVTEUzRTZpSENaUXZYS0t4d2x6aWc9PQ==--862109617703fbabecb22cb152ef79fac8390f52%)](https://www.browserstack.com/automate/public-build/ZDBYTHVrYmxWYmFjQW1UQS9SczZPV1lta1ZqWTJ6aDZPU3JIZ0hTQ3RDZz0tLVRVTEUzRTZpSENaUXZYS0t4d2x6aWc9PQ==--862109617703fbabecb22cb152ef79fac8390f52%)
 
 ## Installation
 
@@ -41,6 +40,9 @@ try `vue invoke e2e-nightwatch-browserstack`
 These can be retrieved from your account settings at:
 <https://www.browserstack.com/accounts/settings>
 
+`BROWSERSTACK_PROJECT` should be configured to split tests by project.
+The default name is "default_project"
+
 ### Run
 
 `npm run test:browserstack:chrome`
@@ -66,3 +68,12 @@ Make sure you set the custom assertions path in `nightwatch.conf.js`
 It uses a version of nightwatch
 before the nightwatch CLI was implemented in `1.0.0`.
 This hasn't been an issue in my testing, but could be an issue for others
+
+## Development
+
+<https://cli.vuejs.org/dev-guide/plugin-dev.html#installing-plugin-locally>
+
+## Supported by
+
+<img src="https://github.com/daposy/vue-nightwatch-browserstack/blob/master/logos/Vue-logo.svg" height="70px">
+<img src="https://github.com/daposy/vue-nightwatch-browserstack/blob/master/logos/Browserstack-logo.svg" height="70px">

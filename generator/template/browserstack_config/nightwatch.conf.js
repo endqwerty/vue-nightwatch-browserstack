@@ -14,6 +14,7 @@ let nightwatch_config = {
       process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
     'browserstack.key':
       process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
+    project: process.env.BROWSERSTACK_PROJECT || 'default_project',
     'browserstack.debug': true,
     'browserstack.local': true,
   },
