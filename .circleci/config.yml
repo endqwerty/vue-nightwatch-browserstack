@@ -26,7 +26,7 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths: .
-  bump:
+  bump-patch:
     docker:
       - image: circleci/node:8.10
     working_directory: ~/repo
@@ -35,6 +35,28 @@ jobs:
           name: bump package version
           command: |
             npm version patch -m "Upgrade to %s through CI"
+            git push origin master
+            git push --tags
+  bump-minor:
+    docker:
+      - image: circleci/node:8.10
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: bump package version
+          command: |
+            npm version major -m "Upgrade to %s through CI"
+            git push origin master
+            git push --tags
+  bump-major:
+    docker:
+      - image: circleci/node:8.10
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: bump package version
+          command: |
+            npm version major -m "Upgrade to %s through CI"
             git push origin master
             git push --tags
   deploy:
@@ -55,16 +77,33 @@ workflows:
   build_and_test:
     jobs:
       - test
-      - bump:
+      - bump-major:
+          requires:
+            - test
           filters:
             tags:
-              only: /^v.*/
+              only: /^major/
+            branches:
+              ignore: /.*/
+      - bump-minor:
+          requires:
+            - test
+          filters:
+            tags:
+              only: /^minor/
+            branches:
+              ignore: /.*/
+      - bump-patch:
+          requires:
+            - test
+          filters:
+            tags:
+              only: /^patch/
             branches:
               ignore: /.*/
       - deploy:
           requires:
             - test
-            - bump
           filters:
             tags:
               only: /^v.*/
