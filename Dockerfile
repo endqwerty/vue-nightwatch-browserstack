@@ -1,6 +1,6 @@
-from endqwerty/vue-cli-hello-world
+FROM endqwerty/vue-cli-hello-world:latest
 
 RUN vue add @vue/e2e-nightwatch &&\
   vue add e2e-nightwatch-browserstack
 
-RUN npm run test:browserstack:chrome
+ENTRYPOINT npm run test:browserstack:chrome
