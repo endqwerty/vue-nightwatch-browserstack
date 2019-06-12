@@ -2,8 +2,8 @@
 
 @vue/cli plugin for automated testing with Vue + Nightwatch + BrowserStack
 
-<img src="https://github.com/daposy/vue-nightwatch-browserstack/logos/Vue-logo.svg" height="70px">
-<img src="https://github.com/daposy/vue-nightwatch-browserstack/logos/Browserstack-logo.svg" height="70px">
+<img src="https://github.com/daposy/vue-nightwatch-browserstack/blob/master/logos/Vue-logo.svg" height="70px">
+<img src="https://github.com/daposy/vue-nightwatch-browserstack/blob/master/logos/Browserstack-logo.svg" height="70px">
 
 ## Installation
 
