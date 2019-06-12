@@ -34,7 +34,7 @@ jobs:
       - run:
           name: bump package version
           command: |
-            npm version prerelease --preid=alpha -m "Bumped version number to %s [ci skip]"
+            npm version patch -m "Upgrade to %s through CI"
             git push origin master
             git push --tags
   deploy:
@@ -55,6 +55,10 @@ workflows:
   build_and_test:
     jobs:
       - test
+      - bump:
+        filters:
+          branches:
+            ignore: /.*/
       - deploy:
           requires:
             - test
