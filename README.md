@@ -3,6 +3,7 @@
 @vue/cli plugin for automated testing with Vue + Nightwatch + BrowserStack
 
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=ZDBYTHVrYmxWYmFjQW1UQS9SczZPV1lta1ZqWTJ6aDZPU3JIZ0hTQ3RDZz0tLVRVTEUzRTZpSENaUXZYS0t4d2x6aWc9PQ==--862109617703fbabecb22cb152ef79fac8390f52%)](https://www.browserstack.com/automate/public-build/ZDBYTHVrYmxWYmFjQW1UQS9SczZPV1lta1ZqWTJ6aDZPU3JIZ0hTQ3RDZz0tLVRVTEUzRTZpSENaUXZYS0t4d2x6aWc9PQ==--862109617703fbabecb22cb152ef79fac8390f52%)
+[![CircleCI](https://circleci.com/gh/daposy/vue-nightwatch-browserstack.svg?style=svg)](https://circleci.com/gh/daposy/vue-nightwatch-browserstack)
 
 ## Installation
 
