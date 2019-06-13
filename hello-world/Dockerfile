@@ -9,3 +9,5 @@ WORKDIR /home/node/app
 RUN vue create hello-world -d
 
 WORKDIR /home/node/app/hello-world
+
+RUN vue add @vue/cli-plugin-e2e-nightwatch
