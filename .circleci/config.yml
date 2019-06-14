@@ -44,7 +44,10 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - test
+      - test:
+          filters:  # required since `deploy` has tag filters AND requires `test`
+            tags:
+              only: /.*/
       - deploy:
           requires:
             - test
