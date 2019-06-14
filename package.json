@@ -42,7 +42,7 @@
     "prettier": "^1.18.2"
   },
   "scripts": {
-    "build-hello-world": "docker build -t endqwerty/vue-cli-hello-world:latest hello-world/. && docker push endqwerty/vue-cli-hello-world:latest",
+    "build-hello-world": "./hello-world/build-hello-world.sh",
     "lint": "eslint ./ --cache --fix",
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0"
   }
