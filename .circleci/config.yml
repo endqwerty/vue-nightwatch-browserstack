@@ -23,14 +23,14 @@ jobs:
             -e BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY \
             -e BROWSERSTACK_PROJECT=$BROWSERSTACK_PROJECT \
             $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          echo "$DOCKER_PASS" | docker login -u $DOCKER_USER --password-stdin
           docker push $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - store_test_results:
-          path: ~/repo/results
+          path: reports
       - persist_to_workspace:
           root: ~/repo
           paths: .
