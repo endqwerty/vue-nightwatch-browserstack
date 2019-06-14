@@ -13,19 +13,27 @@ jobs:
             - v1-dependencies-
       - setup_remote_docker
       - run: npm install
-      - run: |
-          PACKAGE_VERSION=$(npm view vue-cli-plugin-e2e-nightwatch-browserstack version)
-          TAG=$PACKAGE_VERSION-$CIRCLE_BUILD_NUM
-          docker build -t $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG .
-          docker run \
-            --name browserstack-plugin-testing \
-            -e BROWSERSTACK_USERNAME=$BROWSERSTACK_USERNAME \
-            -e BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY \
-            -e BROWSERSTACK_PROJECT=$BROWSERSTACK_PROJECT \
-            $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG
-          docker cp browserstack-plugin-testing:/home/node/app/hello-world/reports "$(pwd)"/reports
-          echo "$DOCKER_PASS" | docker login -u $DOCKER_USER --password-stdin
-          docker push $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG
+      - run:
+          name: build image
+          command: |
+            PACKAGE_VERSION=$(npm view vue-cli-plugin-e2e-nightwatch-browserstack version)
+            TAG=$PACKAGE_VERSION-$CIRCLE_BUILD_NUM
+            docker build -t $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG .
+      - run:
+          name: run image
+          command: |
+            docker run \
+              --name browserstack-plugin-testing \
+              -e BROWSERSTACK_USERNAME=$BROWSERSTACK_USERNAME \
+              -e BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY \
+              -e BROWSERSTACK_PROJECT=$BROWSERSTACK_PROJECT \
+              $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG
+      - run:
+          name: archive results and image
+          command: |
+            docker cp browserstack-plugin-testing:/home/node/app/hello-world/reports "$(pwd)"/reports
+            echo "$DOCKER_PASS" | docker login -u $DOCKER_USER --password-stdin
+            docker push $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG
       - save_cache:
           paths:
             - node_modules
