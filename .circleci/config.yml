@@ -17,13 +17,20 @@ jobs:
           PACKAGE_VERSION=$(npm view vue-cli-plugin-e2e-nightwatch-browserstack version)
           TAG=$PACKAGE_VERSION-$CIRCLE_BUILD_NUM
           docker build -t $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG .
-          docker run -e BROWSERSTACK_USERNAME=$BROWSERSTACK_USERNAME -e BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY -e BROWSERSTACK_PROJECT=$BROWSERSTACK_PROJECT $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG
+          docker run \
+            -v "$(pwd)"/reports:/home/node/app/hello-world/reports \
+            -e BROWSERSTACK_USERNAME=$BROWSERSTACK_USERNAME \
+            -e BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY \
+            -e BROWSERSTACK_PROJECT=$BROWSERSTACK_PROJECT \
+            $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker push $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - store_test_results:
+          path: ~/repo/results
       - persist_to_workspace:
           root: ~/repo
           paths: .
@@ -42,7 +49,7 @@ jobs:
           command: npm publish
 workflows:
   version: 2
-  build_and_test:
+  test_and_deploy:
     jobs:
       - test:
           filters:  # required since `deploy` has tag filters AND requires `test`
