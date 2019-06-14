@@ -19,7 +19,12 @@
   "homepage": "https://github.com/daposy/vue-nightwatch-browserstack",
   "keywords": [
     "vue",
-    "vue-cli"
+    "vue-cli",
+    "browserstack",
+    "nightwatch",
+    "nightwatch-browserstack",
+    "browserstack-nightwatch",
+    "vue-browserstack"
   ],
   "pre-commit": [
     "precommit-msg",
