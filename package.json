@@ -38,7 +38,7 @@
     "type": "git",
     "url": "git@github.com:daposy/vue-nightwatch-browserstack.git"
   },
-  "version": "1.2.6",
+  "version": "1.2.7",
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
