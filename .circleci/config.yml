@@ -12,7 +12,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - setup_remote_docker
-      - run: npm ci
+      - run: npm install
       - run: |
           PACKAGE_VERSION=$(npm view vue-cli-plugin-e2e-nightwatch-browserstack version)
           TAG=$PACKAGE_VERSION-$CIRCLE_BUILD_NUM
