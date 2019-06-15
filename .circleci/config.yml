@@ -34,6 +34,8 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - store_test_results:
           path: reports
+      - store_artifacts:
+          path: reports
       - persist_to_workspace:
           root: ~/repo
           paths: .
