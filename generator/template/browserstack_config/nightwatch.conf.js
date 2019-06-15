@@ -1,7 +1,7 @@
 let nightwatch_config = {
   src_folders: ['tests/e2e/specs'],
   custom_assertions_path: ['tests/e2e/custom-assertions'],
-  output_folder: 'reports/nightwatch',
+  output_folder: 'reports/junit',
 
   selenium: {
     start_process: false,
