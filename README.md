@@ -91,6 +91,15 @@ but this is the one which will show up in the Browserstack UI.
 
 ## Known Issues
 
+### Nightwatch 0.9.21 Security Vulnerabilities
+
+Nightwatch v0.9.21 has multiple security vulnerabilities from dependencies.
+
+These are known and cannot be fixed as Vue-cli is stuck on 0.9.21 for now.
+
+This plugin will be updated to Nightwatch > 1.0.0 when Vue-cli updates
+as this plugin is useless if its using a different version of Nightwatch.
+
 ### TypeError: browser.assert.elementCount is not a function
 
 `asset.elementCount()` is a sample custom-assertion.
