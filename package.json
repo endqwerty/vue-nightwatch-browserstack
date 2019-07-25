@@ -7,7 +7,8 @@
   "description": "Vue-cli 3 plugin for adding nightwatch + browserstack e2e tests",
   "dependencies": {
     "browserstack-automate": "^1.0.2",
-    "browserstack-local": "^1.4.0"
+    "browserstack-local": "^1.4.2",
+    "nightwatch": "^0.9.21"
   },
   "engines": {
     "node": ">=6.10.0"

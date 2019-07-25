@@ -107,13 +107,13 @@ This hasn't been an issue in my testing, but could be an issue for others
 
 ## Contributing
 
-Pull requests are welcome.
-For major changes,
-please open an issue first to discuss what you would like to change.
+### General Notes
 
-Please make sure to update tests as appropriate.
-
-Creation of additional tests are always appreciated too.
+- Pull requests are welcome.
+- For major changes,
+  please open an issue first to discuss what you would like to change.
+- Please make sure to update tests as appropriate.
+- Creation of additional tests are always appreciated too.
 
 ### Development
 
@@ -122,6 +122,27 @@ Most of this information will be
 required to fully understand how Vue plugins work
 
 [Installing a Plugin Locally](https://cli.vuejs.org/dev-guide/plugin-dev.html#installing-plugin-locally)
+
+### Git Commit Formatting
+
+This project uses [commitzen](https://github.com/commitizen/cz-cli)
+
+More information is available at the project repo,
+but the basic instructions are
+
+```sh
+// Install commitizen
+$ npm install -g commitizen
+
+// Then install commitizen adapter
+$ npm install -g cz-conventional-changelog
+```
+
+Use `git cz` instead of `git commit` when committing.
+
+or `npm run commit`
+
+or `npx git-cz` if you don't want to install commitzen
 
 ## License
 
