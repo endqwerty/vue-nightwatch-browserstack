@@ -40,6 +40,7 @@
   },
   "version": "1.2.8",
   "devDependencies": {
+    "cz-conventional-changelog": "^3.0.2",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-prettier": "^3.1.0",
@@ -50,5 +51,10 @@
     "build-hello-world": "./hello-world/build-hello-world.sh",
     "lint": "eslint ./ --cache --fix",
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
