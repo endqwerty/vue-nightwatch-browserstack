@@ -21,33 +21,37 @@ module.exports = api => {
           const browserstack = require('browserstack-local')
 
           nightwatch.bs_local = bs_local = new browserstack.Local()
-          bs_local.start(
-            {
-              key: process.env.BROWSERSTACK_ACCESS_KEY,
-              localdentifier: 'e2e_browserstack',
-              force: true,
-            },
-            error => {
-              if (error) {
-                throw error
-              }
+          try {
+            bs_local.start(
+              {
+                key: process.env.BROWSERSTACK_ACCESS_KEY,
+                localdentifier: 'e2e_browserstack',
+                force: true,
+              },
+              error => {
+                if (error) {
+                  throw error
+                }
 
-              console.log('Connected. Now testing...')
-              return nightwatch.cli(argv => {
-                return nightwatch
-                  .CliRunner(argv)
-                  .setup(null, () => {
-                    // Code to stop browserstack local after end of parallel test
-                    bs_local.stop(function() {})
-                    server ? server.close() : console.log('no server')
-                  })
-                  .runTests(() => {
-                    bs_local.stop(function() {})
-                    server ? server.close() : console.log('no server')
-                  })
-              })
-            }
-          )
+                console.log('Connected. Now testing...')
+                return nightwatch.cli(argv => {
+                  return nightwatch
+                    .CliRunner(argv)
+                    .setup(null, () => {
+                      // Code to stop browserstack local after end of parallel test
+                      bs_local.stop(function() {})
+                      server ? server.close() : console.log('no server')
+                    })
+                    .runTests(() => {
+                      bs_local.stop(function() {})
+                      server ? server.close() : console.log('no server')
+                    })
+                })
+              }
+            )
+          } catch (err) {
+            bs_local.stop(function() {})
+          }
         })
       } catch (error) {
         console.log('There was an error while starting the test runner:\n\n')
