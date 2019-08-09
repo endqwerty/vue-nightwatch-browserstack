@@ -35,16 +35,14 @@ module.exports = api => {
               return nightwatch.cli(argv => {
                 return nightwatch
                   .CliRunner(argv)
-                  .setup(null, () => {
-                    // Code to stop browserstack local after end of parallel test
-                    bs_local.stop(function() {})
-                    server ? server.close() : console.log('no server')
-                  })
-                  .runTests(() => {
+                  .setup()
+                  .runTests()
+                  .then(() => {
                     // Code to stop browserstack local after end of single test
                     bs_local.stop(function() {})
                     server ? server.close() : console.log('no server')
                   })
+                  .catch(err => console.error(err))
               })
             }
           )
