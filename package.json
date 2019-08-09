@@ -49,7 +49,7 @@
   },
   "scripts": {
     "build-hello-world": "./hello-world/build-hello-world.sh",
-    "lint": "eslint ./ --cache --fix",
+    "lint": "eslint ./ --fix",
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
     "commit": "npx git-cz"
   },
