@@ -24,6 +24,7 @@ module.exports = api => {
           bs_local.start(
             {
               key: process.env.BROWSERSTACK_ACCESS_KEY,
+              localdentifier: 'e2e_browserstack',
               force: true,
             },
             error => {
@@ -35,14 +36,15 @@ module.exports = api => {
               return nightwatch.cli(argv => {
                 return nightwatch
                   .CliRunner(argv)
-                  .setup()
-                  .runTests()
-                  .then(() => {
-                    // Code to stop browserstack local after end of single test
+                  .setup(null, () => {
+                    // Code to stop browserstack local after end of parallel test
                     bs_local.stop(function() {})
                     server ? server.close() : console.log('no server')
                   })
-                  .catch(err => console.error(err))
+                  .runTests(() => {
+                    bs_local.stop(function() {})
+                    server ? server.close() : console.log('no server')
+                  })
               })
             }
           )
