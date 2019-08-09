@@ -1,6 +1,8 @@
 FROM endqwerty/vue-cli-hello-world:latest
 
-COPY . vue-nightwatch-browserstack
+WORKDIR /home/node/app/hello-world
+
+COPY . /home/node/app/hello-world/vue-nightwatch-browserstack
 
 RUN npm install --save-dev file:vue-nightwatch-browserstack &&\
   vue invoke e2e-nightwatch-browserstack
