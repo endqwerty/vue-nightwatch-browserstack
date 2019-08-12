@@ -40,11 +40,15 @@ module.exports = api => {
                     .setup(null, () => {
                       // Code to stop browserstack local after end of parallel test
                       bs_local.stop(function() {})
-                      server ? server.close() : console.log('no server')
+                      if (typeof server !== 'undefined') {
+                        server.close()
+                      }
                     })
                     .runTests(() => {
                       bs_local.stop(function() {})
-                      server ? server.close() : console.log('no server')
+                      if (typeof server !== 'undefined') {
+                        server.close()
+                      }
                     })
                 })
               }
