@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   test:
     docker:
@@ -53,7 +53,7 @@ jobs:
           name: Publish package
           command: npm publish
 workflows:
-  version: 2
+  version: 2.1
   test_and_deploy:
     jobs:
       - test:
