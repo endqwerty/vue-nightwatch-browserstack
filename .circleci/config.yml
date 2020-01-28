@@ -38,7 +38,7 @@ jobs:
           path: reports
       - persist_to_workspace:
           root: ~/repo
-          paths: .
+          paths: [.]
   deploy:
     docker:
       - image: circleci/node:8.10
