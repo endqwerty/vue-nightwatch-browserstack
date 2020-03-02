@@ -1,10 +1,10 @@
 {
   "author": {
     "name": "Daniel Yang",
-    "email": "daniel.yang@apijet.com"
+    "email": "daniel@endqwerty.com"
   },
   "deprecated": false,
-  "description": "Vue-cli 3 plugin for adding nightwatch + browserstack e2e tests",
+  "description": "Vue-cli 4 plugin for adding nightwatch + browserstack e2e tests",
   "dependencies": {
     "@vue/cli": "^4.2.3",
     "browserstack-automate": "^1.0.2",
@@ -42,7 +42,6 @@
   },
   "version": "2.2.3",
   "devDependencies": {
-    "cz-conventional-changelog": "^3.1.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-prettier": "^3.1.2",
@@ -52,12 +51,6 @@
   "scripts": {
     "build-hello-world": "./hello-world/build-hello-world.sh",
     "lint": "eslint ./ --fix",
-    "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
-    "commit": "npx git-cz"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "precommit-msg": "echo 'Pre-commit checks...' && exit 0"
   }
 }

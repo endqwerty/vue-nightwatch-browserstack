@@ -2,7 +2,6 @@ const path = require('path')
 const deepmerge = require('deepmerge')
 const chromedriver = require('chromedriver')
 
-const useSelenium = process.env.VUE_NIGHTWATCH_USE_SELENIUM === '1'
 const startHeadless = process.env.VUE_NIGHTWATCH_HEADLESS === '1'
 const concurrentMode = process.env.VUE_NIGHTWATCH_CONCURRENT === '1'
 const userOptions = JSON.parse(process.env.VUE_NIGHTWATCH_USER_OPTIONS || '{}')
@@ -55,12 +54,7 @@ const defaultSettings = {
           },
         },
       },
-      webdriver: useSelenium
-        ? {}
-        : {
-            server_path: geckodriver.path,
-            port: 4444,
-          },
+      webdriver: {},
     },
   },
 }
@@ -78,34 +72,30 @@ function adaptUserSettings(settings) {
 }
 
 function webdriverServerSettings() {
-  if (useSelenium) {
-    return {
-      selenium: {
-        start_process: false,
-        host: 'hub-cloud.browserstack.com',
-        port: 443,
-        server_path: require('selenium-server').path,
-        cli_args: {
-          'webdriver.chrome.driver': chromedriver.path,
-          'webdriver.gecko.driver': geckodriver.path,
+  return {
+    selenium: {
+      start_process: false,
+      host: 'hub-cloud.browserstack.com',
+      port: 443,
+      cli_args: {
+        'webdriver.chrome.driver': chromedriver.path,
+        'webdriver.gecko.driver': geckodriver.path,
+      },
+    },
+    build: 'nightwatch-browserstack',
+    test_settings: {
+      default: {
+        desiredCapabilities: {
+          'browserstack.user':
+            process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
+          'browserstack.key':
+            process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
+          'browserstack.project':
+            process.env.BROWSERSTACK_PROJECT || 'default_project',
+          'browserstack.debug': true,
+          'browserstack.local': true,
         },
       },
-      build: 'nightwatch-browserstack',
-      browserstack: {
-        user: process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
-        key: process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
-        project: process.env.BROWSERSTACK_PROJECT || 'default_project',
-        debug: true,
-        local: true,
-      },
-    }
-  }
-
-  return {
-    webdriver: {
-      start_process: true,
-      port: 9515,
-      server_path: chromedriver.path,
     },
   }
 }
