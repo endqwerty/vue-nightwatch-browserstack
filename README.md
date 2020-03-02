@@ -123,6 +123,8 @@ required to fully understand how Vue plugins work
 
 [Installing a Plugin Locally](https://cli.vuejs.org/dev-guide/plugin-dev.html#installing-plugin-locally)
 
+For committing, you may be required to be logged into docker for changes to the hello-world image.
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
