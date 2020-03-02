@@ -3,10 +3,12 @@ let nightwatch_config = {
   custom_assertions_path: ['tests/e2e/custom-assertions'],
   output_folder: 'reports/junit',
 
+  // this will be distributed to each test setting option using the support
+  // function below
   selenium: {
     start_process: false,
     host: 'hub-cloud.browserstack.com',
-    port: 80,
+    port: 443,
   },
 
   common_capabilities: {
@@ -24,6 +26,7 @@ let nightwatch_config = {
 
   test_settings: {
     default: {
+      launch_url: 'localhost:8080',
       globals: {
         waitForConditionTimeout: 5000,
       },
