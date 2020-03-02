@@ -4,21 +4,13 @@ module.exports = (api, opts, rootOptions) => {
   api.extendPackage({
     devDependencies: {
       'browserstack-automate': '^1.0.2',
-      nightwatch: '^1.0.0',
+      nightwatch: '^1.3.4',
     },
     scripts: {
       'test:browserstack:chrome':
-        'vue-cli-service test:browserstack -c browserstack_config/nightwatch.conf.js -e chrome',
+        'vue-cli-service test:browserstack -c browserstack_config/nightwatch.conf.js -e chrome -t "tests/e2e/specs/test.js"',
       'test:browserstack:firefox':
-        'vue-cli-service test:browserstack -c browserstack_config/nightwatch.conf.js -e firefox',
-      'test:browserstack:ie':
-        'vue-cli-service test:browserstack -c browserstack_config/nightwatch.conf.js -e ie',
-      'test:browserstack:safari':
-        'vue-cli-service test:browserstack -c browserstack_config/nightwatch.conf.js -e safari',
-      'test:browserstack:android':
-        'vue-cli-service test:browserstack -c browserstack_config/nightwatch.conf.js -e android',
-      'test:browserstack:iphone':
-        'vue-cli-service test:browserstack -c browserstack_config/nightwatch.conf.js -e iphone',
+        'vue-cli-service test:browserstack -c browserstack_config/nightwatch.conf.js -e firefox tests/e2e/specs/test.js',
     },
   })
 }
