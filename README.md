@@ -91,28 +91,19 @@ but this is the one which will show up in the Browserstack UI.
 
 ## Known Issues
 
-### Nightwatch 0.9.21 Security Vulnerabilities
-
-Nightwatch v0.9.21 has multiple security vulnerabilities from dependencies.
-
-These are known and cannot be fixed as Vue-cli is stuck on 0.9.21 for now.
-
-This plugin will be updated to Nightwatch > 1.0.0 when Vue-cli updates
-as this plugin is useless if its using a different version of Nightwatch.
-
 ### TypeError: browser.assert.elementCount is not a function
 
 `asset.elementCount()` is a sample custom-assertion.
 Make sure you set the custom assertions path in whichever `nightwatch.conf.js`
 you are using
 
-### Nightwatch not being used as the test runner
+### Nightwatch Security Vulnerabilities or Not being used as the test runner
 
+If you are using a previous version of @vue/cli such as
 `"@vue/cli-plugin-e2e-nightwatch": "^3.8.0",`
-is currently the latest plugin version.
-It uses a version of Nightwatch
-before the Nightwatch CLI was implemented in `1.0.0`.
-This hasn't been an issue in my testing, but could be an issue for others
+which uses a version of Nightwatch
+before the Nightwatch CLI was implemented in `1.0.0`, then there will be issues
+such as test runner inconsistencies or critical vulnerabilities.
 
 ## Contributing
 
@@ -131,27 +122,6 @@ Most of this information will be
 required to fully understand how Vue plugins work
 
 [Installing a Plugin Locally](https://cli.vuejs.org/dev-guide/plugin-dev.html#installing-plugin-locally)
-
-### Git Commit Formatting
-
-This project uses [commitzen](https://github.com/commitizen/cz-cli)
-
-More information is available at the project repo,
-but the basic instructions are
-
-```sh
-// Install commitizen
-$ npm install -g commitizen
-
-// Then install commitizen adapter
-$ npm install -g cz-conventional-changelog
-```
-
-Use `git cz` instead of `git commit` when committing.
-
-or `npm run commit`
-
-or `npx git-cz` if you don't want to install commitzen
 
 ## License
 

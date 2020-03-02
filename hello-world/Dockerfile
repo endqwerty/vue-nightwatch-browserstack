@@ -2,7 +2,7 @@ FROM node:8
 
 RUN apt-get update -y
 
-RUN npm install -g @vue/cli && vue --version
+RUN npm install -g @vue/cli@^4.2.3 && vue --version
 
 WORKDIR /home/node/app
 
