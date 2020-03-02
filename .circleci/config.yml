@@ -25,7 +25,7 @@ jobs:
               -e BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY \
               -e BROWSERSTACK_PROJECT=$BROWSERSTACK_PROJECT \
               $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG
-            docker cp browserstack-plugin-testing:/home/node/app/hello-world/tests/e2e/reports "$(pwd)"/reports/junit
+            docker cp browserstack-plugin-testing:/home/node/app/hello-world/tests/e2e/reports "$(pwd)"/reports
             echo "$DOCKER_PASS" | docker login -u $DOCKER_USER --password-stdin
             docker push $DOCKER_USER/vue-cli-plugin-e2e-nightwatch-browserstack:$TAG
       - save_cache:

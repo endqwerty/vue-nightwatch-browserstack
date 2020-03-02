@@ -21,7 +21,7 @@ if (startHeadless) {
 
 const defaultSettings = {
   src_folders: ['tests/e2e/specs'],
-  output_folder: 'tests/e2e/reports',
+  output_folder: 'tests/e2e/reports/junit',
   page_objects_path: 'tests/e2e/page-objects',
   custom_assertions_path: 'tests/e2e/custom-assertions',
   custom_commands_path: 'tests/e2e/custom-commands',
