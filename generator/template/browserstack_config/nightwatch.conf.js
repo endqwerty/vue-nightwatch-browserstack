@@ -1,83 +1,101 @@
-let nightwatch_config = {
+const path = require('path')
+const deepmerge = require('deepmerge')
+const chromedriver = require('chromedriver')
+
+const startHeadless = process.env.VUE_NIGHTWATCH_HEADLESS === '1'
+const concurrentMode = process.env.VUE_NIGHTWATCH_CONCURRENT === '1'
+const userOptions = JSON.parse(process.env.VUE_NIGHTWATCH_USER_OPTIONS || '{}')
+const chromeArgs = []
+const geckoArgs = []
+
+// user may have not installed geckodriver
+let geckodriver = {}
+try {
+  geckodriver = require('geckodriver')
+} catch (e) {}
+
+if (startHeadless) {
+  chromeArgs.push('headless')
+  geckoArgs.push('--headless')
+}
+
+const defaultSettings = {
   src_folders: ['tests/e2e/specs'],
-  custom_assertions_path: ['tests/e2e/custom-assertions'],
-  output_folder: 'reports/junit',
-
-  selenium: {
-    start_process: false,
-    host: 'hub-cloud.browserstack.com',
-    port: 80,
-  },
-
-  common_capabilities: {
-    build: 'nightwatch-browserstack',
-    'browserstack.user':
-      process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
-    'browserstack.key':
-      process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
-    project: process.env.BROWSERSTACK_PROJECT || 'default_project',
-    'browserstack.debug': true,
-    'browserstack.local': true,
-  },
-
-  test_workers: false,
+  output_folder: 'tests/e2e/reports/junit',
+  page_objects_path: 'tests/e2e/page-objects',
+  custom_assertions_path: 'tests/e2e/custom-assertions',
+  custom_commands_path: 'tests/e2e/custom-commands',
+  test_workers: concurrentMode,
 
   test_settings: {
     default: {
+      launch_url: '${VUE_DEV_SERVER_URL}',
+      detailed_output: !concurrentMode,
       globals: {
         waitForConditionTimeout: 5000,
       },
     },
     chrome: {
       desiredCapabilities: {
-        browser: 'chrome',
-        platform: 'WINDOWS',
+        browserName: 'chrome',
+        chromeOptions: {
+          w3c: false,
+          args: chromeArgs,
+        },
       },
     },
     firefox: {
       desiredCapabilities: {
-        browser: 'firefox',
-        platform: 'WINDOWS',
+        browserName: 'firefox',
+        alwaysMatch: {
+          acceptInsecureCerts: true,
+          'moz:firefoxOptions': {
+            args: geckoArgs,
+          },
+        },
       },
-    },
-    safari: {
-      desiredCapabilities: {
-        browser: 'safari',
-        platform: 'MAC',
-      },
-    },
-    ie: {
-      desiredCapabilities: {
-        browser: 'internet explorer',
-        version: '10',
-        platform: 'WINDOWS',
-      },
-    },
-    iphone: {
-      desiredCapabilities: {
-        browser: 'iPhone',
-      },
-    },
-    android: {
-      desiredCapabilities: {
-        browser: 'android',
-        platform: 'ANDROID',
-      },
+      webdriver: {},
     },
   },
 }
+const baseSettings = deepmerge(defaultSettings, webdriverServerSettings())
+module.exports = deepmerge(baseSettings, adaptUserSettings(userOptions))
 
-// Code to support common capabilites
-for (var i in nightwatch_config.test_settings) {
-  var config = nightwatch_config.test_settings[i]
-  config['selenium_host'] = nightwatch_config.selenium.host
-  config['selenium_port'] = nightwatch_config.selenium.port
-  config['desiredCapabilities'] = config['desiredCapabilities'] || {}
-  for (var j in nightwatch_config.common_capabilities) {
-    config['desiredCapabilities'][j] =
-      config['desiredCapabilities'][j] ||
-      nightwatch_config.common_capabilities[j]
+function adaptUserSettings(settings) {
+  // The path to nightwatch external globals file needs to be made absolute
+  // if it is supplied in an additional config file, due to merging of config files
+  if (settings.globals_path) {
+    settings.globals_path = path.resolve(settings.globals_path)
   }
+
+  return settings
 }
 
-module.exports = nightwatch_config
+function webdriverServerSettings() {
+  return {
+    selenium: {
+      start_process: false,
+      host: 'hub-cloud.browserstack.com',
+      port: 443,
+      cli_args: {
+        'webdriver.chrome.driver': chromedriver.path,
+        'webdriver.gecko.driver': geckodriver.path,
+      },
+    },
+    build: 'nightwatch-browserstack',
+    test_settings: {
+      default: {
+        desiredCapabilities: {
+          'browserstack.user':
+            process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
+          'browserstack.key':
+            process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
+          'browserstack.project':
+            process.env.BROWSERSTACK_PROJECT || 'default_project',
+          'browserstack.debug': true,
+          'browserstack.local': true,
+        },
+      },
+    },
+  }
+}
