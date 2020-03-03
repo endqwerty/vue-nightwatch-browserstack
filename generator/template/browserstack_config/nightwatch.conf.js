@@ -82,7 +82,6 @@ function webdriverServerSettings() {
         'webdriver.gecko.driver': geckodriver.path,
       },
     },
-    build: 'nightwatch-browserstack',
     test_settings: {
       default: {
         desiredCapabilities: {
@@ -90,8 +89,20 @@ function webdriverServerSettings() {
             process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
           'browserstack.key':
             process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
-          'browserstack.project':
-            process.env.BROWSERSTACK_PROJECT || 'default_project',
+          build: process.env.BROWSERSTACK_BUILD || 'default_build',
+          project: process.env.BROWSERSTACK_PROJECT || 'default_project',
+          'browserstack.debug': true,
+          'browserstack.local': true,
+        },
+      },
+      chrome: {
+        desiredCapabilities: {
+          'browserstack.user':
+            process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
+          'browserstack.key':
+            process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
+          build: process.env.BROWSERSTACK_BUILD || 'default_build',
+          project: process.env.BROWSERSTACK_PROJECT || 'default_project',
           'browserstack.debug': true,
           'browserstack.local': true,
         },
