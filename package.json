@@ -6,7 +6,6 @@
   "deprecated": false,
   "description": "Vue-cli 4 plugin for adding nightwatch + browserstack e2e tests",
   "dependencies": {
-    "@vue/cli": "^4.2.3",
     "browserstack-automate": "^1.0.2",
     "browserstack-local": "^1.4.5"
   },
