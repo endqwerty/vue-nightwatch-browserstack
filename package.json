@@ -9,6 +9,13 @@
     "browserstack-automate": "^1.0.2",
     "browserstack-local": "^1.4.5"
   },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.19.1"
+  },
   "engines": {
     "node": ">=6.10.0"
   },
@@ -39,13 +46,6 @@
     "url": "git@github.com:endqwerty/vue-nightwatch-browserstack.git"
   },
   "version": "3.0.3",
-  "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "pre-commit": "^1.2.2",
-    "prettier": "^1.19.1"
-  },
   "scripts": {
     "build-hello-world": "./hello-world/build-hello-world.sh",
     "lint": "eslint ./ --fix",
