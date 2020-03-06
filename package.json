@@ -1,7 +1,7 @@
 {
   "author": {
     "name": "Daniel Yang",
-    "email": "daniel@endqwerty.com"
+    "email": "endqwerty@gmail.com"
   },
   "deprecated": false,
   "description": "Vue-cli 4 plugin for adding nightwatch + browserstack e2e tests",
@@ -16,7 +16,7 @@
   "peerDependencies": {
     "@vue/cli-plugin-e2e-nightwatch": "^4.0.0-0"
   },
-  "homepage": "https://github.com/daposy/vue-nightwatch-browserstack",
+  "homepage": "https://github.com/endqwerty/vue-nightwatch-browserstack",
   "keywords": [
     "vue",
     "vue-cli",
@@ -36,7 +36,7 @@
   "name": "vue-cli-plugin-e2e-nightwatch-browserstack",
   "repository": {
     "type": "git",
-    "url": "git@github.com:daposy/vue-nightwatch-browserstack.git"
+    "url": "git@github.com:endqwerty/vue-nightwatch-browserstack.git"
   },
   "version": "3.0.2",
   "devDependencies": {
