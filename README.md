@@ -5,7 +5,7 @@
 ![Package Version](https://img.shields.io/npm/v/vue-cli-plugin-e2e-nightwatch-browserstack.svg)
 ![NPM License](https://img.shields.io/npm/l/vue-cli-plugin-e2e-nightwatch-browserstack.svg)
 
-[![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=V3FWY3BMSWRRVkpodktPK0I4WHZIeUNncVcvVWt4YXpyaUZ6TEsxNGNqZz0tLW52Z1NZQnpUWDV4NTBXclYxNU5Qenc9PQ==--bf7dd644419429aaac53e8fccba362ef3690c2c8)](https://automate.browserstack.com/public-build/V3FWY3BMSWRRVkpodktPK0I4WHZIeUNncVcvVWt4YXpyaUZ6TEsxNGNqZz0tLW52Z1NZQnpUWDV4NTBXclYxNU5Qenc9PQ==--bf7dd644419429aaac53e8fccba362ef3690c2c8)
+[![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=cVlsTG4xU3dEampLSi8xdWVYSU5ndUQvenVMSktJL1NvMm0wZHUyR2xDcz0tLVhoajBER0Z6TWVDbWN1OE0ydldVM1E9PQ==--251264d5a1a068810f65b5dc61fea4eca5cd0013)](https://automate.browserstack.com/public-build/cVlsTG4xU3dEampLSi8xdWVYSU5ndUQvenVMSktJL1NvMm0wZHUyR2xDcz0tLVhoajBER0Z6TWVDbWN1OE0ydldVM1E9PQ==--251264d5a1a068810f65b5dc61fea4eca5cd0013)
 [![CircleCI](https://circleci.com/gh/endqwerty/vue-nightwatch-browserstack.svg?style=svg)](https://circleci.com/gh/endqwerty/vue-nightwatch-browserstack)
 
 ## Installation

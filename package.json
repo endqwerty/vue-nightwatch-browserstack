@@ -10,18 +10,18 @@
     "browserstack-local": "^1.4.5"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-prettier": "^3.1.2",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "pre-commit": "^1.2.2",
-    "prettier": "^1.19.1"
+    "prettier": "^2.0.5"
   },
   "engines": {
-    "node": ">=6.10.0"
+    "node": ">=10.0.0"
   },
   "engineStrict": true,
   "peerDependencies": {
-    "@vue/cli-plugin-e2e-nightwatch": "^4.0.0-0"
+    "@vue/cli-plugin-e2e-nightwatch": "^4.5.2"
   },
   "homepage": "https://github.com/endqwerty/vue-nightwatch-browserstack",
   "keywords": [
