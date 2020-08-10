@@ -1,4 +1,4 @@
-module.exports = api => {
+module.exports = (api) => {
   api.registerCommand(
     'test:browserstack',
     {
@@ -7,7 +7,7 @@ module.exports = api => {
       options: {},
       details: {},
     },
-    args => {
+    (args) => {
       try {
         const serverPromise = args.url
           ? Promise.resolve({
@@ -28,24 +28,24 @@ module.exports = api => {
                 localdentifier: 'e2e_browserstack',
                 force: true,
               },
-              error => {
+              (error) => {
                 if (error) {
                   throw error
                 }
 
                 console.log('Connected. Now testing...')
-                return nightwatch.cli(argv => {
+                return nightwatch.cli((argv) => {
                   return nightwatch
                     .CliRunner(argv)
                     .setup(null, () => {
                       // Code to stop browserstack local after end of parallel test
-                      bs_local.stop(function() {})
+                      bs_local.stop(function () {})
                       if (typeof server !== 'undefined') {
                         server.close()
                       }
                     })
                     .runTests(() => {
-                      bs_local.stop(function() {})
+                      bs_local.stop(function () {})
                       if (typeof server !== 'undefined') {
                         server.close()
                       }
@@ -54,7 +54,7 @@ module.exports = api => {
               }
             )
           } catch (err) {
-            bs_local.stop(function() {})
+            bs_local.stop(function () {})
           }
         })
       } catch (error) {
